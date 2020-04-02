@@ -1,0 +1,8 @@
+{
+  "name": "cite-env-photomaton",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
