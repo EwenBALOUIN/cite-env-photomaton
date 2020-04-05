@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
-  CameraPhoto, CameraSource } from '@capacitor/core';
+  CameraPhoto, CameraSource, PhotosAlbumType } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 const { Camera, Filesystem, Storage } = Plugins;
 
   @Injectable({
@@ -12,7 +13,7 @@ const { Camera, Filesystem, Storage } = Plugins;
     private PHOTO_STORAGE: string = "photos";
     private platform: Platform;
 
-    constructor(platform: Platform) {
+    constructor(platform: Platform, private router: Router) {
       this.platform = platform;
     }
 
@@ -23,6 +24,11 @@ const { Camera, Filesystem, Storage } = Plugins;
         source: CameraSource.Camera,
         quality: 100
       });
+
+      const base64Data = await this.readAsBase64(capturedPhoto);
+
+      console.log(base64Data);
+      /*
       const savedImageFile = await this.savePicture(capturedPhoto);
       this.photos.unshift(savedImageFile);
       Storage.set({
@@ -37,6 +43,14 @@ const { Camera, Filesystem, Storage } = Plugins;
                   return photoCopy;
               }))
       });
+      */
+     let navigationExtras: NavigationExtras = {
+      state: {
+        img: base64Data
+      }
+    };
+
+      this.router.navigate(['filter'], navigationExtras);
     }
 
     private async savePicture(cameraPhoto: CameraPhoto) {
@@ -124,6 +138,24 @@ const { Camera, Filesystem, Storage } = Plugins;
 
         // Web platform only: Save the photo into the base64 field
         photo.base64 = `data:image/jpeg;base64,${readFile.data}`;
+      }
+    }
+  }
+
+  public async loadOneSaved(data: any) {
+    // Retrieve cached photo array data
+    const photos = await Storage.get({ key: this.PHOTO_STORAGE });
+    this.photos = JSON.parse(photos.value) || [];
+    for (let photo of this.photos) {
+      if (photo.filepath == data['filepath']) {
+        if (!this.platform.is('hybrid')) {
+            const readFile = await Filesystem.readFile({
+                path: photo.filepath,
+                directory: FilesystemDirectory.Data
+            });
+            photo.base64 = `data:image/jpeg;base64,${readFile.data}`;
+            console.log(photo);
+        }
       }
     }
   }
