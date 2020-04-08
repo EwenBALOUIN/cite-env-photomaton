@@ -1,0 +1,17 @@
+<ion-header>
+  <img src="../../assets/icon/cite_env_logo.png" class="img-logo">
+</ion-header>
+
+<ion-content>
+  <h1>Choissisez votre engagement pour votre photo</h1>
+  <ion-list>
+    <ion-item *ngFor="let engagement of list_engagement">
+      <ion-label>{{engagement.value}}</ion-label>
+      <ion-checkbox color="success" slot="start" [(ngModel)]="engagement.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div class="btnForm">
+    <ion-button color="danger" (click)="redirectToHome()">Annuler</ion-button>
+    <ion-button color="success" (click)="redirectToEmail()">Valider</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+</ion-header>
+
+<ion-content class="align-block background">
+  <img src="../../assets/icon/cite_env_logo.png" class="img-logo">
+  <h1>Cité de l'environnement</h1>
+  <div class="align-item">
+    <h2>Prenez une photo</h2>
+    <h2>de votre engagement</h2>
+  </div>
+  <div class="align-camera">
+    <ion-fab size="large" horizontal="center" slot="fixed">
+      <ion-fab-button color="light" (click)="photoService.addNewToGallery()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>
