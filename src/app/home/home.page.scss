@@ -1,0 +1,28 @@
+.img-logo{
+    width: 40%;
+    height: auto;
+    margin-top: 20%;
+}
+
+.align-block{
+    text-align: center;
+    .align-item{
+        text-align: center;
+        margin-top: 20%;
+    }
+    .align-camera{
+        margin-top: 10%;
+    }
+}
+
+ion-content{
+    --background: none;
+    background-image: url(../../assets/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+.button-color{
+    color:#ff2ac1;
+}
