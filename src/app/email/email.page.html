@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>email</ion-title>
+    <ion-title>E-mail</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <h2>Votre adresse email  :</h2>
+  <ion-input inputmode="email" placeholder="Entrer adresse E-mail"></ion-input>
+  <ion-item>
+    <ion-label>Valider les <a (click)="oui()">CGU</a></ion-label>
+    <ion-checkbox color="success" slot="start" (click)="change()"></ion-checkbox>
+  </ion-item>
+  <ion-button color="success" (click)="sendEmail()" [disabled]="disabled">Envoyer</ion-button>
+  <ion-button color="danger" (click)="redirectToHome()">Annuler</ion-button>
 </ion-content>

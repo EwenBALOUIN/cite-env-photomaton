@@ -7,12 +7,16 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'filter',
-    loadChildren: () => import('./filter/filter.module').then( m => m.FilterPageModule)
-  },
-  {
     path: 'email',
     loadChildren: () => import('./email/email.module').then( m => m.EmailPageModule)
+  },
+  {
+    path: 'engagement',
+    loadChildren: () => import('./engagement/engagement.module').then( m => m.EngagementPageModule)
+  },
+  {
+    path: 'cgu',
+    loadChildren: () => import('./cgu/cgu.module').then( m => m.CguPageModule)
   }
 ];
 @NgModule({

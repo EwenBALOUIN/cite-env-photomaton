@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Engagement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let engagement of list_engagement">
+      <ion-label>{{engagement.value}}</ion-label>
+      <ion-checkbox color="success" slot="start" [(ngModel)]="engagement.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button color="danger" (click)="redirectToHome()">Annuler</ion-button>
+  <ion-button color="success" (click)="redirectToEmail()">Valider</ion-button>
+</ion-content>

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FilterPageRoutingModule } from './filter-routing.module';
+import { CguPageRoutingModule } from './cgu-routing.module';
 
-import { FilterPage } from './filter.page';
+import { CguPage } from './cgu.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FilterPageRoutingModule
+    CguPageRoutingModule
   ],
-  declarations: [FilterPage]
+  declarations: [CguPage]
 })
-export class FilterPageModule {}
+export class CguPageModule {}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
-  CameraPhoto, CameraSource, PhotosAlbumType } from '@capacitor/core';
+  CameraPhoto, CameraSource} from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 const { Camera, Filesystem, Storage } = Plugins;
@@ -22,35 +22,20 @@ const { Camera, Filesystem, Storage } = Plugins;
       const capturedPhoto = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
-        quality: 100
+        quality: 100,
       });
 
       const base64Data = await this.readAsBase64(capturedPhoto);
+     this.GetImgNavToEngagement(base64Data);
+    }
 
-      console.log(base64Data);
-      /*
-      const savedImageFile = await this.savePicture(capturedPhoto);
-      this.photos.unshift(savedImageFile);
-      Storage.set({
-        key: this.PHOTO_STORAGE,
-        value: this.platform.is('hybrid')
-                ? JSON.stringify(this.photos)
-                : JSON.stringify(this.photos.map(p => {
-                  // Don't save the base64 representation of the photo data,
-                  // since it's already saved on the Filesystem
-                  const photoCopy = { ...p };
-                  delete photoCopy.base64;
-                  return photoCopy;
-              }))
-      });
-      */
-     let navigationExtras: NavigationExtras = {
-      state: {
-        img: base64Data
-      }
-    };
-
-      this.router.navigate(['filter'], navigationExtras);
+    private async GetImgNavToEngagement(img: any) {
+      let navigationExtras: NavigationExtras = {
+        state: {
+          img: img
+        }
+      };
+      this.router.navigate(['engagement'], navigationExtras);
     }
 
     private async savePicture(cameraPhoto: CameraPhoto) {
@@ -154,7 +139,6 @@ const { Camera, Filesystem, Storage } = Plugins;
                 directory: FilesystemDirectory.Data
             });
             photo.base64 = `data:image/jpeg;base64,${readFile.data}`;
-            console.log(photo);
         }
       }
     }

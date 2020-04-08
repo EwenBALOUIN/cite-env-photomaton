@@ -18,12 +18,4 @@ export class HomePage implements OnInit {
     this.photoService.loadSaved();
   }
 
-  public GetImgNavToFilter(img: any) {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        img: img
-      }
-    };
-    this.router.navigate(['filter'], navigationExtras);
-  }
 }
