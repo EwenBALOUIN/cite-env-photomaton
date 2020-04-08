@@ -1,16 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>E-mail</ion-title>
-  </ion-toolbar>
+  <img src="../../assets/icon/cite_env_logo.png" class="img-logo">
 </ion-header>
 
-<ion-content>
-  <h2>Votre adresse email  :</h2>
-  <ion-input inputmode="email" placeholder="Entrer adresse E-mail"></ion-input>
-  <ion-item>
-    <ion-label>Valider les <a (click)="oui()">CGU</a></ion-label>
-    <ion-checkbox color="success" slot="start" (click)="change()"></ion-checkbox>
+<ion-content class="align-block">
+  <h2>Entrer votre adresse E-mail</h2>
+  <h2>pour récupérer votre photo</h2>
+  <ion-item class="align-item margin-item">
+    <ion-label position="floating">Votre adressse E-mail :</ion-label>
+    <ion-input inputmode="email"></ion-input>
   </ion-item>
-  <ion-button color="success" (click)="sendEmail()" [disabled]="disabled">Envoyer</ion-button>
-  <ion-button color="danger" (click)="redirectToHome()">Annuler</ion-button>
+  <ion-item>
+    <ion-label>Valider les <a (click)="redirectToCgu()">CGU</a></ion-label>
+    <ion-checkbox class="align-check"  color="success" slot="start" (click)="change()"></ion-checkbox>
+  </ion-item>
+  <ion-button class="button_cancel" color="danger" (click)="redirectToHome()">Annuler</ion-button>
+  <ion-button class="button_valid" color="success" (click)="sendEmail()" [disabled]="disabled">Envoyer</ion-button>
 </ion-content>
